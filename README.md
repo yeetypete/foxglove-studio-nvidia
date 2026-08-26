@@ -42,11 +42,8 @@ nvidia-smi dmon -s u   # "dec" column should show values > 0
 ```
 
 > [!NOTE]
-> The "GPU feature status" list in Foxglove's Performance tab is unreliable
-> here. It probes WebCodecs with a 64×64 frame, which Chromium may decode in
-> software, so "Video codec acceleration" can say "Not hardware accelerated"
-> while real streams run on NVDEC. Its "webgl2: Not hardware accelerated" line
-> is a display bug. Chromium no longer reports a `webgl2` feature key.
+> The "GPU feature status" list in Foxglove's Performance tab is not reliable.
+> It can report "Not hardware accelerated" while real streams run on NVDEC.
 
 ## Common issues
 
