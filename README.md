@@ -42,11 +42,18 @@ nvidia-smi dmon -s u   # "dec" column should show values > 0
 ```
 
 > [!NOTE]
-> Foxglove's About dialog is unreliable here. It probes WebCodecs with a
-> 64×64 frame, which Chromium may decode in software, so it can report the
-> codec as "Not hardware accelerated" while real streams run on NVDEC. Its
-> "webgl2: Not hardware accelerated" line is a display bug. Chromium no longer
-> reports a `webgl2` feature key.
+> The "GPU feature status" list in Foxglove's Performance tab is unreliable
+> here. It probes WebCodecs with a 64×64 frame, which Chromium may decode in
+> software, so "Video codec acceleration" can say "Not hardware accelerated"
+> while real streams run on NVDEC. Its "webgl2: Not hardware accelerated" line
+> is a display bug. Chromium no longer reports a `webgl2` feature key.
+
+## Common issues
+
+- **Hybrid laptops decode on the iGPU.** On laptops with an iGPU you must
+  explicitly switch to discrete graphics in the BIOS
+  (e.g. ThinkPad: Config > Display > Graphics Device > Discrete Graphics). Note
+  that your battery life may suffer.
 
 Tested with: Foxglove 3.0.0 (Electron 43 / Chromium 150), nvidia-vaapi-driver
 git 03bb5a0, NVIDIA 610.43.02 open kernel module, RTX 5090,
